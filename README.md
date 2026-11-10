@@ -1,5 +1,10 @@
 # Mods.MechWarrior5.Shared
 
+> **Archived (2026-11-10).** This library now lives in the `shared/` folder of
+> [Mods.MechWarrior5.SaveEditor](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor), its only user;
+> make changes there. If another project ever needs it, it can be split back out with
+> `git subtree split --prefix shared`.
+
 The shared base for MindAttic's MechWarrior 5 save editors:
 
 - [Mods.MechWarrior5.SaveEditor](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor) (MechWarrior 5: Mercenaries)

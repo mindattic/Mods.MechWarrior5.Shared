@@ -36,3 +36,4 @@ _Nothing recorded yet._
 | MM5S-T13 | 2026-11-09 | chore | closed | Remove the Glyph.Skull and Glyph.ClanStar icons again (the editor dropped its theme button, M5SE-T36) | 2175b03 |
 | MM5S-T14 | 2026-11-10 | feature | closed | Mirror from the save editor: WPF controls come from MindAttic.Components (MaButton presets, MaShapeBorder Panel, ChamferBorder removed, Components 37.0.1 + nuget.config), Button.Picture preset, MechArtLightbox (MaModal) with MechArt.ShowCommand, MechImageService sized pictures, UI-thread-safe image loads | 5d1d19a |
 | MM5S-T15 | 2026-11-10 | chore | closed | Crash recovery: commit the command-catalog sync (.agent/commands/*.md) and regenerated docs/USER_STORIES.md left uncommitted by the session crash | — |
+| MM5S-T16 | 2026-11-10 | docs | closed | Archived: the library moved into Mods.MechWarrior5.SaveEditor/shared (M5SE-T90); README points there | — |
