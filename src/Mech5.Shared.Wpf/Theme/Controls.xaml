@@ -2,6 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:c="clr-namespace:Mech5.Shared.Wpf.Controls">
 
+    <!-- Self-contained: styles below resolve their brushes and fonts from the palette. -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Mech5.Shared.Wpf;component/Theme/Palette.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <!-- ===== Typography ===== -->
     <Style TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource Font.Hud}" />

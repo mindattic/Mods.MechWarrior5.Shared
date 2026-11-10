@@ -3,7 +3,6 @@
                     xmlns:conv="clr-namespace:Mech5.Shared.Wpf.Converters">
     <!-- Merge this one dictionary in App.xaml to get the whole MW5 HUD look. -->
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Mech5.Shared.Wpf;component/Theme/Palette.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Mech5.Shared.Wpf;component/Theme/Controls.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
