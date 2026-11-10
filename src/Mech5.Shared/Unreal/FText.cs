@@ -1,13 +1,16 @@
 namespace Mech5.Shared.Unreal;
 
 /// <summary>
-/// Decodes and rewrites the two FText history forms MW5 uses for player-visible names:
-/// <c>None</c> (culture-invariant string) and <c>Base</c> (namespace, key, source string).
+/// Decodes the two FText history forms MechWarrior 5 uses for player-visible names, <c>None</c>
+/// (culture-invariant string) and <c>Base</c> (namespace, key, source string), and writes edits as
+/// culture-invariant text: a Base text keeps its localization key, so the game would keep showing the
+/// localized original instead of the edit.
 /// </summary>
 public static class FText
 {
     private const byte HistoryNone = 0xFF;
     private const byte HistoryBase = 0x00;
+    private const int CultureInvariantFlag = 2;
 
     public static string? TryGetDisplayString(byte[] data)
     {
@@ -34,29 +37,26 @@ public static class FText
         }
     }
 
-    /// <summary>Returns <paramref name="data"/> re-encoded to show <paramref name="text"/>.</summary>
-    public static byte[] WithDisplayString(byte[] data, string text)
+    /// <summary>A culture-invariant text showing <paramref name="text"/> (empty text when null or empty).</summary>
+    public static byte[] Invariant(string? text)
     {
-        var reader = new UnrealReader(data);
-        var flags = reader.ReadInt32();
-        var history = reader.ReadByte();
         var writer = new UnrealWriter();
-        writer.WriteInt32(flags);
-
-        if (history == HistoryBase)
+        writer.WriteInt32(CultureInvariantFlag);
+        writer.WriteByte(HistoryNone);
+        if (string.IsNullOrEmpty(text))
         {
-            var ns = reader.ReadFString();
-            var key = reader.ReadFString();
-            writer.WriteByte(HistoryBase);
-            writer.WriteFString(ns);
-            writer.WriteFString(key);
+            writer.WriteInt32(0);
+        }
+        else
+        {
+            writer.WriteInt32(1);
             writer.WriteFString(FString.From(text));
-            return writer.ToArray();
         }
 
-        writer.WriteByte(HistoryNone);
-        writer.WriteInt32(1);
-        writer.WriteFString(FString.From(text));
         return writer.ToArray();
     }
+
+    /// <summary>Returns <paramref name="data"/> unchanged when it already shows <paramref name="text"/>, else an invariant text.</summary>
+    public static byte[] WithDisplayString(byte[] data, string text) =>
+        TryGetDisplayString(data) == text ? data : Invariant(text);
 }
