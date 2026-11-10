@@ -16,6 +16,11 @@ public interface IDialogService
 
     string? PickSaveAs(string currentPath);
 
+    /// <summary>Open-file picker; <paramref name="filter"/> uses the <c>Label|*.ext</c> form.</summary>
+    string? PickFileToOpen(string title, string filter);
+
+    string? PickFileToSave(string title, string defaultName, string filter);
+
     void Show(string title, string message, DialogTone tone = DialogTone.Info, params DialogSection[] sections);
 
     bool Confirm(string title, string message, string confirmText, DialogTone tone = DialogTone.Warning);

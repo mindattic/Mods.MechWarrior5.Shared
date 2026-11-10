@@ -33,6 +33,18 @@ public sealed class DialogService : IDialogService
         return dialog.ShowDialog(Owner) == true ? dialog.FileName : null;
     }
 
+    public string? PickFileToOpen(string title, string filter)
+    {
+        var dialog = new OpenFileDialog { Title = title, Filter = filter };
+        return dialog.ShowDialog(Owner) == true ? dialog.FileName : null;
+    }
+
+    public string? PickFileToSave(string title, string defaultName, string filter)
+    {
+        var dialog = new SaveFileDialog { Title = title, Filter = filter, FileName = defaultName, OverwritePrompt = true };
+        return dialog.ShowDialog(Owner) == true ? dialog.FileName : null;
+    }
+
     public void Show(string title, string message, DialogTone tone = DialogTone.Info, params DialogSection[] sections) =>
         MessageDialog.Run(Owner, new MessageDialogModel(title, message, tone, sections, "OK", null, null));
 
